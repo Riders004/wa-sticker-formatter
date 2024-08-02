@@ -42,26 +42,26 @@ jobs:
       - name: Install Dependencies and Packages
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg libvips-dev gtk-doc-tools gobject-introspection
-          yarn install
+          npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     
       - name: Install Dependencies
-        run: yarn
+        run: npm install
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish in NPM (as `queenanya/wa-sticker-formatter`)
         run: |
           npx json -I -f package.json -e "this.name='@queenanya/wa-sticker-formatter'"
-          yarn publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
       - name: Publish in NPM (teamolduser scope)
         run: |
           npx json -I -f package.json -e "this.name='@teamolduser/wa-sticker-formatter'"
-          yarn publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
+          npm publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
           npx json -I -f package.json -e "this.name='@queenanya/wa-sticker-formatter'"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
