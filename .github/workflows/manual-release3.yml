@@ -35,9 +35,8 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg libvips-dev gtk-doc-tools gobject-introspection
           yarn install
-          
-      - name: Login
-        run: npm login
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
