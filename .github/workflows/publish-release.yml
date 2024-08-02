@@ -52,14 +52,14 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish in NPM (as `queenanya/wa-sticker-formatter`)
-        run: npm publish --access public
+        run: yarn publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
       - name: Publish in NPM (teamolduser scope)
         run: |
           npx json -I -f package.json -e "this.name='@teamolduser/wa-sticker-formatter'"
-          npm publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
+          yarn publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
           npx json -I -f package.json -e "this.name='@queenanya/wa-sticker-formatter'"
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
