@@ -52,7 +52,9 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
       - name: Publish in NPM (as `queenanya/wa-sticker-formatter`)
-        run: yarn publish --access public
+        run: |
+          npx json -I -f package.json -e "this.name='@queenanya/wa-sticker-formatter'"
+          yarn publish --access public --//registry.npmjs.org/:_authToken=$NPM_TOKEN
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       
