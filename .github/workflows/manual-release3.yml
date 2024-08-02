@@ -35,7 +35,6 @@ jobs:
         run: |
           sudo apt-get update && sudo apt-get install -y ffmpeg libvips-dev gtk-doc-tools gobject-introspection
           yarn install
-          npm login
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
