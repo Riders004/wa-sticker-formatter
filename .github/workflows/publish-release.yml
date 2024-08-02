@@ -39,8 +39,10 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-yarn-
             
-      - name: pakcagess 
+      - name: Packs Apt 
       - run: sudo apt-get update
+      
+      - name: Packs Apt2
       - run: sudo apt-get install ffmpeg libvips-dev gtk-doc-tools gobject-introspection
     - run: yarn install
     
@@ -49,7 +51,7 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
-      - name: Publish in NPM (as `@queenanya/wa-sticker-formatter`)
+      - name: Publish in NPM (as `queenanya/wa-sticker-formatter`)
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
@@ -74,7 +76,7 @@ jobs:
         run: npm pack
 
       - name: Rename Pack
-        run: mv *.tgz @queenanya/wa-sticker-formatter.tgz
+        run: mv *.tgz wa-sticker-formatter.tgz
 
       - name: Create Release
         uses: meeDamian/github-release@2.0
@@ -89,6 +91,6 @@ jobs:
           draft: false
           prerelease: false
           files: >
-            @queenanya/wa-sticker-formatter.tgz
+            wa-sticker-formatter.tgz
           gzip: folders
           allow_override: true
