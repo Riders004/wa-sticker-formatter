@@ -30,6 +30,12 @@ jobs:
       - name: Get yarn cache directory path
         id: yarn-cache-dir-path
         run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+        
+      - name: Packs Apt 
+      run: |
+       sudo apt-get update
+       sudo apt-get install ffmpeg libvips-dev gtk-doc-tools gobject-introspection
+       yarn install
 
       - uses: actions/cache@v3
         id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)

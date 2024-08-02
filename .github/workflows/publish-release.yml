@@ -40,11 +40,10 @@ jobs:
             ${{ runner.os }}-yarn-
             
       - name: Packs Apt 
-      - run: sudo apt-get update
-      
-      - name: Packs Apt2
-      - run: sudo apt-get install ffmpeg libvips-dev gtk-doc-tools gobject-introspection
-    - run: yarn install
+      run: |
+       sudo apt-get update
+       sudo apt-get install ffmpeg libvips-dev gtk-doc-tools gobject-introspection
+       yarn install
     
       - name: Install Dependencies
         run: yarn
